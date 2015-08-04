@@ -2,28 +2,21 @@ require './sorter'
 
 describe Sorter do
 
-  students = {1 => [3],
-              2 => [4],
-              3 => [1],
-              4 => [2]}
+  students = [:michael, :simon, :tim, :john]
+  students.each_with_index do |name, id|
+    let(name) { double :student, name: name, id: id }
+  end
 
-  let(:sorter) { Sorter.new students }
+  let(:sorter) { Sorter.new(michael, simon, tim, john) }
 
   context 'it takes in a hash of students with pairs' do
-    it 'can read in a hash' do
-      expect(sorter.students).to eq students
-    end
 
     it 'can output a list of students' do
-      expect(sorter.get_student_list).to eq [1,2,3,4]
-    end
-
-    it 'can see a student\'s previous pair' do
-      expect(sorter.get_previous_pairs(2)).to eq [4]
+      expect(sorter.get_student_list).to eq [:michael, :simon, :tim, :john]
     end
 
     it 'can output a series of combonations of pairs' do
-      expect(sorter.all_pair_arrays).to eq [[[1, 3], [4, 2]], [[1, 4], [2, 3]], [[1, 2], [3, 4]]]
+      expect(sorter.all_pair_arrays).to eq [[[michael, tim], [john, simon]], [[michael, john], [simon, tim]], [[michael, simon], [tim, john]]]
     end
 
     it 'can, given a day from 1, return the pairing array for that day' do

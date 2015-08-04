@@ -1,12 +1,12 @@
 class Sorter
   attr_reader :students
 
-  def initialize(students)
+  def initialize(*students)
     @students = students
   end
 
   def get_student_list
-    students.keys
+    students.map(&:name)
   end
 
   def get_previous_pairs(student)
@@ -18,7 +18,7 @@ class Sorter
   end
 
   def all_pair_arrays
-    generate_pair_arrays(get_student_list)
+    generate_pair_arrays(students)
   end
 
   def number_of_students
