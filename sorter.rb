@@ -25,7 +25,7 @@ class Sorter
     students.size
   end
 
-  def total_number_of_pairing_sessions
+def total_number_of_pairing_sessions
     number_of_students - 1
   end
 
